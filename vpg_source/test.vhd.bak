@@ -1,0 +1,423 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+USE ieee.std_logic_signed.all;
+use ieee.numeric_std.all;
+
+entity vga_generator1 is
+port
+( clk: in std_logic;                
+  reset_n: in std_logic;
+
+  STATUS: 	in std_logic_vector(15 downto 0);
+  FORCED: 	in std_logic_vector(15 downto 0);
+  CHARGE: 	in std_logic_vector(7 downto 0);
+  DISCHARGE: in std_logic_vector(7 downto 0);
+  P_SOURCED: in std_logic_vector(7 downto 0);
+  P_SINKED:	in std_logic_vector(7 downto 0);
+  BATTERY:	in std_logic_vector(7 downto 0);	
+  
+  h_total: in std_logic_vector(11 downto 0);           
+  h_sync: in std_logic_vector(11 downto 0);           
+  h_start: in std_logic_vector(11 downto 0);             
+  h_end : in std_logic_vector(11 downto 0);                                                  
+  v_total: in std_logic_vector(11 downto 0);           
+  v_sync: in std_logic_vector(11 downto 0);            
+  v_start: in std_logic_vector(11 downto 0);           
+  v_end: in std_logic_vector(11 downto 0); 
+  v_active_14: in std_logic_vector(11 downto 0); 
+  v_active_24: in std_logic_vector(11 downto 0); 
+  v_active_34: in std_logic_vector(11 downto 0); 
+  vga_hs: out std_logic;             
+  vga_vs: out std_logic;            
+  vga_de: out std_logic; 
+  vga_r: out std_logic_vector(7 downto 0); 
+  vga_g: out std_logic_vector(7 downto 0);
+  vga_b: out std_logic_vector(7 downto 0)  
+);
+end vga_generator1;
+
+architecture BEH of vga_generator1 is
+
+
+-- Images
+type IMAGES is array (0 to 59) of std_logic_vector(7 downto 0);
+constant FORNO1: IMAGES := (x"00",x"00",x"00"
+									,x"00",x"00",x"00"
+									,x"03",x"ff",x"fc"
+									,x"1f",x"ff",x"fe"
+									,x"7f",x"ff",x"fe"
+									,x"00",x"00",x"06"
+									,x"7f",x"00",x"00"
+									,x"7f",x"ff",x"00"
+									,x"7f",x"ff",x"00"
+									,x"7f",x"ff",x"00"
+									,x"3f",x"ff",x"1e"
+									,x"3f",x"ff",x"3e"
+									,x"3f",x"ff",x"1e"
+									,x"3f",x"ff",x"1c"
+									,x"1f",x"ff",x"9c"
+									,x"00",x"ff",x"9c"
+									,x"00",x"01",x"dc"
+									,x"00",x"00",x"fc"
+									,x"00",x"00",x"0c"
+									,x"00",x"00",x"00");
+
+constant FORNO: IMAGES := (x"00",x"ff",x"ff"
+									,x"00",x"ff",x"ff"
+									,x"00",x"ff",x"ff"
+									,x"00",x"ff",x"00"
+									,x"00",x"ff",x"00"
+									,x"00",x"ff",x"00"
+									,x"00",x"ff",x"00"
+									,x"00",x"ff",x"00"
+									,x"00",x"ff",x"00"
+									,x"00",x"ff",x"00"
+									,x"00",x"ff",x"00"
+									,x"00",x"ff",x"00"
+									,x"00",x"ff",x"00"
+									,x"00",x"ff",x"00"
+									,x"00",x"ff",x"00"
+									,x"00",x"ff",x"00"
+									,x"00",x"ff",x"00"
+									,x"ff",x"ff",x"00"
+									,x"ff",x"ff",x"00"
+									,x"ff",x"ff",x"00");
+									
+									
+
+--//=======================================================
+--//  Signal declarations
+--//=======================================================
+signal h_count: std_logic_vector(11 downto 0);
+signal pixel_x: std_logic_vector(7 downto 0);
+signal v_count: std_logic_vector(11 downto 0);
+signal h_act: std_logic; 
+signal h_act_d: std_logic;
+signal v_act,v_act_d,pre_vga_de,h_max, hs_end, hr_start, hr_end,v_max, vs_end, vr_start, vr_end,
+		 v_act_14, v_act_24, v_act_34,boarder: std_logic;
+SIGNAL color_mode: std_logic_vector(3 downto 0);
+signal H_CNT,V_CNT,V_ST,H_ST,V_EN,H_EN: integer range 0 to 4095;
+
+begin -- BEH
+
+
+H_CNT	<= to_integer(unsigned(h_count));
+V_CNT <= to_integer(unsigned(v_count));
+H_ST	<= to_integer(unsigned(h_start));
+V_ST	<= to_integer(unsigned(V_start));
+H_EN	<= to_integer(unsigned(h_end));
+V_EN	<= to_integer(unsigned(v_end));
+
+--//=======================================================
+--//  Structural coding
+--//=======================================================
+
+process(h_count,h_total,h_sync,h_start,h_end,v_total,v_sync,v_start,v_end,v_active_14,v_active_24,v_active_34)
+	begin
+		h_max 	<= '0';
+		hs_end 	<= '0';
+		hr_start	<= '0';
+		hr_end	<= '0';
+		v_max		<= '0';
+		vs_end	<= '0';
+		vr_start	<= '0';
+		vr_end	<= '0';
+		v_act_14	<= '0';
+		v_act_24	<= '0';
+		v_act_34	<= '0';
+		if h_count = h_total then h_max <= '1';
+		end if;
+		if h_count >= h_sync then hs_end <= '1';
+		end if;
+		if h_count = h_start then hr_start <= '1';
+		end if;
+		if h_count = h_end then hr_end <= '1';
+		end if;
+		if v_count = v_total then v_max <= '1';
+		end if;
+		if v_count >= v_sync then vs_end <= '1';
+		end if;
+		if v_count = v_start then vr_start <= '1';
+		end if;
+		if v_count = v_end then vr_end <= '1';
+		end if;
+		if v_count = v_active_14 then v_act_14 <= '1';
+		end if;
+		if v_count = v_active_24 then v_act_24 <= '1';  
+		end if;
+		if v_count = v_active_34 then v_act_34 <= '1';
+		end if;
+end process;
+
+--//horizontal control signals
+process (clk,reset_n)
+	begin
+		if (reset_n='0') then
+			h_act_d	<=	'0';
+			h_count	<=	(others => '0');
+			pixel_x	<=	(others => '0');
+			vga_hs	<=	'1';
+			h_act		<=	'0';
+		elsif rising_edge(clk) then
+			h_act_d	<=	h_act;
+			if (h_max='1')
+				then h_count <=	(others => '0');
+				else h_count <=	h_count + "000000000001";
+			end if;
+
+			if (h_act_d='1')
+				then pixel_x	<=	pixel_x + "00000001";
+				else pixel_x	<=	(others => '0');
+			end if;
+
+			if (hs_end='1' and h_max='0')
+				then vga_hs	<=	'1';
+				else vga_hs	<=	'0';
+			end if;
+	
+			if (hr_start='1')
+				then h_act		<=	'1';
+				elsif (hr_end='1')
+					then h_act	<=	'0';
+				end if;
+			end if;
+	end process;
+	
+
+--//vertical control signals
+process (clk,reset_n)
+	begin
+		if (reset_n='0') then
+			v_act_d	<=	'0';
+			v_count	<=	(others => '0');
+			color_mode	<=	(others => '0');
+			vga_vs	<=	'1';
+			v_act		<=	'0';
+		elsif rising_edge(clk) then
+			if (h_max='1') then
+				v_act_d	  <=	v_act;
+				if (v_max='1') then v_count	<=	(others => '0');
+									else v_count	<=	v_count + "000000000001";
+				end if;
+				if (vs_end='1' and v_max='0') then 	vga_vs	<=	'1';
+														else	vga_vs	<=	'0';
+				end if;
+				if (vr_start='1') then	v_act <=	'1';
+					elsif (vr_end='1') then	v_act <=	'0';
+				end if;
+				if (vr_start='1') then color_mode(0) <=	'1';
+					elsif (v_act_14='1') then	color_mode(0) <=	'0';
+				end if;
+
+				if (v_act_14='1') then	color_mode(1) <=	'1';
+					elsif (v_act_24='1') then color_mode(1) <=	'0';
+				end if;
+				 
+				if (v_act_24='1') then	color_mode(2) <=	'1';
+					elsif (v_act_34='1') then	color_mode(2) <=	'0';
+				end if;
+				 
+				if (v_act_34='1') then	color_mode(3) <=	'1';
+					elsif (vr_end='1') then	color_mode(3) <=	'0';
+				end if;
+			end if;
+		end if;
+end process;
+
+--//pattern generator and display enable
+process (clk,reset_n)
+	begin
+		if (reset_n='0') then
+			vga_de		<=	'0';
+			pre_vga_de	<=	'0';
+			boarder		<=	'0';
+		elsif rising_edge(clk) then
+			vga_de		<=	pre_vga_de;
+			pre_vga_de	<=	v_act and h_act;
+ 
+			vga_r <= (others => '0');
+			vga_g <= (others => '0');
+			vga_b	<= (others => '0');
+
+ 
+			if ((h_act_d='0' and h_act='1') or hr_end='1' or (v_act_d='0' and v_act='1') or vr_end='1')
+				then boarder <='1';
+				else boarder <='0';
+			end if;
+		
+			if (boarder='1') then
+				vga_r <= (others => '1');
+				vga_g <= "00010000";
+				vga_b	<= (others => '1');
+			end if;
+
+--	display green square if enabled, red if disabled, blue if forced
+			for I in 0 to 15 loop
+				if ((V_CNT>V_ST+60) and (V_CNT<V_ST+80) and
+					(H_CNT>H_ST+150+(20*I)) and (H_CNT<H_ST+150+(20*(I+1)))) then
+					if (STATUS(I)='1') then 
+						vga_r <= (others => '0');
+						vga_g <= (others => '1');
+						vga_b	<= (others => '0');
+											 else
+						vga_r <= (others => '1');
+						vga_g <= (others => '0');
+						vga_b	<= (others => '0');
+					end if;
+					if (FORCED(I)='1') then 
+						vga_r <= (others => '0');
+						vga_g <= (others => '0');
+						vga_b	<= (others => '1');
+					end if;
+				end if;
+			end loop;
+
+			
+--	display green bar for Power Sourced
+				if ((V_CNT>V_ST+120) and (V_CNT<V_ST+140) and
+					(H_CNT>H_ST+150) and (H_CNT<H_ST+150+255)) then
+						vga_r <= (others => '1');
+						vga_g <= (others => '1');
+						vga_b	<= (others => '1');
+				end if;
+				if ((V_CNT>V_ST+120) and (V_CNT<V_ST+140) and
+					(H_CNT>H_ST+150) and (H_CNT<H_ST+150+to_integer(unsigned(P_SOURCED)))) then
+						vga_r <= (others => '0');
+						vga_g <= (others => '1');
+						vga_b	<= (others => '0');
+				end if;
+			
+
+--	display red bar for Power Sinked
+				if ((V_CNT>V_ST+150) and (V_CNT<V_ST+170) and
+					(H_CNT>H_ST+150) and (H_CNT<H_ST+150+255)) then
+						vga_r <= (others => '1');
+						vga_g <= (others => '1');
+						vga_b	<= (others => '1');
+				end if;
+				if ((V_CNT>V_ST+150) and (V_CNT<V_ST+170) and
+					(H_CNT>H_ST+150) and (H_CNT<H_ST+150+to_integer(unsigned(P_SINKED)))) then
+						vga_r <= (others => '1');
+						vga_g <= (others => '0');
+						vga_b	<= (others => '0');
+				end if;
+
+--	display light green bar for Battery Charge
+				if ((V_CNT>V_ST+180) and (V_CNT<V_ST+200) and
+					(H_CNT>H_ST+150) and (H_CNT<H_ST+150+255)) then
+						vga_r <= x"FF";
+						vga_g <= (others => '1');
+						vga_b	<= (others => '1');
+				end if;
+				if ((V_CNT>V_ST+180) and (V_CNT<V_ST+200) and
+					(H_CNT>H_ST+150) and (H_CNT<H_ST+150+to_integer(unsigned(CHARGE)))) then
+						vga_r <= (others => '0');
+						vga_g <= x"80";
+						vga_b	<= (others => '0');
+				end if;
+
+--	display light red bar for Battery Discharge
+				if ((V_CNT>V_ST+210) and (V_CNT<V_ST+230) and
+					(H_CNT>H_ST+150) and (H_CNT<H_ST+150+255)) then
+						vga_r <= x"FF";
+						vga_g <= (others => '1');
+						vga_b	<= (others => '1');
+				end if;
+				if ((V_CNT>V_ST+210) and (V_CNT<V_ST+230) and
+					(H_CNT>H_ST+150) and (H_CNT<H_ST+150+to_integer(unsigned(DISCHARGE)))) then
+						vga_r <= x"80";
+						vga_g <= x"00";
+						vga_b	<= (others => '0');
+				end if;
+
+--	display yellow bar for Battery Status
+				if ((V_CNT>V_ST+240) and (V_CNT<V_ST+260) and
+					(H_CNT>H_ST+150) and (H_CNT<H_ST+150+255)) then
+						vga_r <= x"FF";
+						vga_g <= (others => '1');
+						vga_b	<= (others => '1');
+				end if;
+				if ((V_CNT>V_ST+240) and (V_CNT<V_ST+260) and
+					(H_CNT>H_ST+150) and (H_CNT<H_ST+150+to_integer(unsigned(BATTERY)))) then
+						vga_r <= x"80";
+						vga_g <= x"00";
+						vga_b	<= (others => '0');
+				end if;
+
+	
+	
+
+--				if ((V_CNT>V_ST+60) and (V_CNT<V_ST+85) and
+--					(H_CNT>H_ST+100) and (H_CNT<H_ST+121)) then
+--						if (FORNO(((H_CNT-(H_ST+100+1))/8)+V_CNT-(V_ST+60+1))(7-(H_CNT-(H_ST+100+1))+7*((H_CNT-(H_ST+100+1))/8)) ='1') then
+--							vga_r <= (others => '1');
+--							vga_g <= (others => '1');
+--							vga_b	<= (others => '0');
+--						end if;
+--				end if;
+
+
+
+
+			
+--				if (V_CNT>V_ST+30) and (V_CNT<V_ST+50) and
+--					(H_CNT>H_ST+100) and (H_CNT<H_ST+120) then
+--					vga_r <= (others => '1');
+--					vga_g <= (others => '1');
+--					vga_b	<= (others => '0');
+--				end if;
+----
+--				if (V_CNT>V_ST+30) and (V_CNT<V_ST+50) and
+--					(H_CNT>H_ST+120) and (H_CNT<H_ST+140) then
+--					vga_r <= (others => '1');
+--					vga_g <= (others => '1');
+--					vga_b	<= (others => '0');
+--				end if;
+--
+--				if (V_CNT>V_ST+30) and (V_CNT<V_ST+50) and
+--					(H_CNT>H_ST+140) and (H_CNT<H_ST+160) then
+--					vga_r <= (others => '1');
+--					vga_g <= (others => '1');
+--					vga_b	<= (others => '0');
+--				end if;
+--
+--				if (V_CNT>V_ST+30) and (V_CNT<V_ST+50) and
+--					(H_CNT>H_ST+100) and (H_CNT<H_ST+120) then
+--					vga_r <= (others => '1');
+--					vga_g <= (others => '1');
+--					vga_b	<= (others => '0');
+--				end if;
+--
+--				if (V_CNT>V_ST+30) and (V_CNT<V_ST+50) and
+--					(H_CNT>H_ST+100) and (H_CNT<H_ST+120) then
+--					vga_r <= (others => '1');
+--					vga_g <= (others => '1');
+--					vga_b	<= (others => '0');
+--				end if;
+
+					
+--			case color_mode is
+--				when "0001" =>	vga_r <= pixel_x;
+--									vga_g <= (others => '0');
+--									vga_b	<= (others => '0');
+--									
+--				when "0010"	=> vga_g <= pixel_x;
+--									vga_r <= (others => '0');
+--									vga_b	<= (others => '0');
+--									
+--				when "0100"	=> vga_b <= pixel_x;
+--									vga_g <= (others => '0');
+--									vga_r	<= (others => '0');
+--									
+--				when "1000"	=>	vga_r <= pixel_x;
+--									vga_g <= pixel_x;
+--									vga_b	<= pixel_x;
+--									
+--				when others => vga_g <= (others => '0');
+--									vga_r <= (others => '0');
+--									vga_b <= (others => '0');
+--				end case;
+	end if;
+end process;
+
+end BEH;

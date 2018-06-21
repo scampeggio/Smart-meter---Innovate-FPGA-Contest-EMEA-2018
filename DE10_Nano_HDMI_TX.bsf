@@ -1,0 +1,260 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 16 16 296 384)
+	(text "DE10_Nano_HDMI_TX" (rect 5 0 102 12)(font "Arial" ))
+	(text "inst" (rect 8 352 20 364)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "STATUS[15..0]" (rect 0 0 62 12)(font "Arial" ))
+		(text "STATUS[15..0]" (rect 21 27 83 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "FORCED[15..0]" (rect 0 0 66 12)(font "Arial" ))
+		(text "FORCED[15..0]" (rect 21 43 87 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 3))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "CHARGE[7..0]" (rect 0 0 64 12)(font "Arial" ))
+		(text "CHARGE[7..0]" (rect 21 59 85 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "DISCHARGE[7..0]" (rect 0 0 80 12)(font "Arial" ))
+		(text "DISCHARGE[7..0]" (rect 21 75 101 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "P_SOURCED[7..0]" (rect 0 0 81 12)(font "Arial" ))
+		(text "P_SOURCED[7..0]" (rect 21 91 102 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 3))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "P_SINKED[7..0]" (rect 0 0 68 12)(font "Arial" ))
+		(text "P_SINKED[7..0]" (rect 21 107 89 119)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112)(line_width 3))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "BATTERY[7..0]" (rect 0 0 68 12)(font "Arial" ))
+		(text "BATTERY[7..0]" (rect 21 123 89 135)(font "Arial" ))
+		(line (pt 0 128)(pt 16 128)(line_width 3))
+	)
+	(port
+		(pt 0 144)
+		(input)
+		(text "ADC_SDO" (rect 0 0 48 12)(font "Arial" ))
+		(text "ADC_SDO" (rect 21 139 69 151)(font "Arial" ))
+		(line (pt 0 144)(pt 16 144)(line_width 1))
+	)
+	(port
+		(pt 0 160)
+		(input)
+		(text "FPGA_CLK1_50" (rect 0 0 71 12)(font "Arial" ))
+		(text "FPGA_CLK1_50" (rect 21 155 92 167)(font "Arial" ))
+		(line (pt 0 160)(pt 16 160)(line_width 1))
+	)
+	(port
+		(pt 0 176)
+		(input)
+		(text "FPGA_CLK2_50" (rect 0 0 73 12)(font "Arial" ))
+		(text "FPGA_CLK2_50" (rect 21 171 94 183)(font "Arial" ))
+		(line (pt 0 176)(pt 16 176)(line_width 1))
+	)
+	(port
+		(pt 0 192)
+		(input)
+		(text "FPGA_CLK3_50" (rect 0 0 73 12)(font "Arial" ))
+		(text "FPGA_CLK3_50" (rect 21 187 94 199)(font "Arial" ))
+		(line (pt 0 192)(pt 16 192)(line_width 1))
+	)
+	(port
+		(pt 0 208)
+		(input)
+		(text "HDMI_TX_INT" (rect 0 0 63 12)(font "Arial" ))
+		(text "HDMI_TX_INT" (rect 21 203 84 215)(font "Arial" ))
+		(line (pt 0 208)(pt 16 208)(line_width 1))
+	)
+	(port
+		(pt 0 224)
+		(input)
+		(text "KEY[1..0]" (rect 0 0 40 12)(font "Arial" ))
+		(text "KEY[1..0]" (rect 21 219 61 231)(font "Arial" ))
+		(line (pt 0 224)(pt 16 224)(line_width 3))
+	)
+	(port
+		(pt 0 240)
+		(input)
+		(text "SW[3..0]" (rect 0 0 36 12)(font "Arial" ))
+		(text "SW[3..0]" (rect 21 235 57 247)(font "Arial" ))
+		(line (pt 0 240)(pt 16 240)(line_width 3))
+	)
+	(port
+		(pt 280 32)
+		(output)
+		(text "ADC_CONVST" (rect 0 0 69 12)(font "Arial" ))
+		(text "ADC_CONVST" (rect 190 27 259 39)(font "Arial" ))
+		(line (pt 280 32)(pt 264 32)(line_width 1))
+	)
+	(port
+		(pt 280 48)
+		(output)
+		(text "ADC_SCK" (rect 0 0 48 12)(font "Arial" ))
+		(text "ADC_SCK" (rect 211 43 259 55)(font "Arial" ))
+		(line (pt 280 48)(pt 264 48)(line_width 1))
+	)
+	(port
+		(pt 280 64)
+		(output)
+		(text "ADC_SDI" (rect 0 0 43 12)(font "Arial" ))
+		(text "ADC_SDI" (rect 216 59 259 71)(font "Arial" ))
+		(line (pt 280 64)(pt 264 64)(line_width 1))
+	)
+	(port
+		(pt 280 240)
+		(output)
+		(text "HDMI_TX_CLK" (rect 0 0 68 12)(font "Arial" ))
+		(text "HDMI_TX_CLK" (rect 191 235 259 247)(font "Arial" ))
+		(line (pt 280 240)(pt 264 240)(line_width 1))
+	)
+	(port
+		(pt 280 256)
+		(output)
+		(text "HDMI_TX_D[23..0]" (rect 0 0 80 12)(font "Arial" ))
+		(text "HDMI_TX_D[23..0]" (rect 179 251 259 263)(font "Arial" ))
+		(line (pt 280 256)(pt 264 256)(line_width 3))
+	)
+	(port
+		(pt 280 272)
+		(output)
+		(text "HDMI_TX_DE" (rect 0 0 62 12)(font "Arial" ))
+		(text "HDMI_TX_DE" (rect 197 267 259 279)(font "Arial" ))
+		(line (pt 280 272)(pt 264 272)(line_width 1))
+	)
+	(port
+		(pt 280 288)
+		(output)
+		(text "HDMI_TX_HS" (rect 0 0 61 12)(font "Arial" ))
+		(text "HDMI_TX_HS" (rect 198 283 259 295)(font "Arial" ))
+		(line (pt 280 288)(pt 264 288)(line_width 1))
+	)
+	(port
+		(pt 280 304)
+		(output)
+		(text "HDMI_TX_VS" (rect 0 0 62 12)(font "Arial" ))
+		(text "HDMI_TX_VS" (rect 197 299 259 311)(font "Arial" ))
+		(line (pt 280 304)(pt 264 304)(line_width 1))
+	)
+	(port
+		(pt 280 320)
+		(output)
+		(text "LED[7..0]" (rect 0 0 40 12)(font "Arial" ))
+		(text "LED[7..0]" (rect 219 315 259 327)(font "Arial" ))
+		(line (pt 280 320)(pt 264 320)(line_width 3))
+	)
+	(port
+		(pt 280 80)
+		(bidir)
+		(text "ARDUINO_IO[15..0]" (rect 0 0 86 12)(font "Arial" ))
+		(text "ARDUINO_IO[15..0]" (rect 173 75 259 87)(font "Arial" ))
+		(line (pt 280 80)(pt 264 80)(line_width 3))
+	)
+	(port
+		(pt 280 96)
+		(bidir)
+		(text "ARDUINO_RESET_N" (rect 0 0 100 12)(font "Arial" ))
+		(text "ARDUINO_RESET_N" (rect 159 91 259 103)(font "Arial" ))
+		(line (pt 280 96)(pt 264 96)(line_width 1))
+	)
+	(port
+		(pt 280 112)
+		(bidir)
+		(text "GPIO_0[35..0]" (rect 0 0 57 12)(font "Arial" ))
+		(text "GPIO_0[35..0]" (rect 202 107 259 119)(font "Arial" ))
+		(line (pt 280 112)(pt 264 112)(line_width 3))
+	)
+	(port
+		(pt 280 128)
+		(bidir)
+		(text "GPIO_1[35..0]" (rect 0 0 56 12)(font "Arial" ))
+		(text "GPIO_1[35..0]" (rect 203 123 259 135)(font "Arial" ))
+		(line (pt 280 128)(pt 264 128)(line_width 3))
+	)
+	(port
+		(pt 280 144)
+		(bidir)
+		(text "HDMI_I2C_SCL" (rect 0 0 69 12)(font "Arial" ))
+		(text "HDMI_I2C_SCL" (rect 190 139 259 151)(font "Arial" ))
+		(line (pt 280 144)(pt 264 144)(line_width 1))
+	)
+	(port
+		(pt 280 160)
+		(bidir)
+		(text "HDMI_I2C_SDA" (rect 0 0 71 12)(font "Arial" ))
+		(text "HDMI_I2C_SDA" (rect 188 155 259 167)(font "Arial" ))
+		(line (pt 280 160)(pt 264 160)(line_width 1))
+	)
+	(port
+		(pt 280 176)
+		(bidir)
+		(text "HDMI_I2S" (rect 0 0 43 12)(font "Arial" ))
+		(text "HDMI_I2S" (rect 216 171 259 183)(font "Arial" ))
+		(line (pt 280 176)(pt 264 176)(line_width 1))
+	)
+	(port
+		(pt 280 192)
+		(bidir)
+		(text "HDMI_LRCLK" (rect 0 0 64 12)(font "Arial" ))
+		(text "HDMI_LRCLK" (rect 195 187 259 199)(font "Arial" ))
+		(line (pt 280 192)(pt 264 192)(line_width 1))
+	)
+	(port
+		(pt 280 208)
+		(bidir)
+		(text "HDMI_MCLK" (rect 0 0 59 12)(font "Arial" ))
+		(text "HDMI_MCLK" (rect 200 203 259 215)(font "Arial" ))
+		(line (pt 280 208)(pt 264 208)(line_width 1))
+	)
+	(port
+		(pt 280 224)
+		(bidir)
+		(text "HDMI_SCLK" (rect 0 0 56 12)(font "Arial" ))
+		(text "HDMI_SCLK" (rect 203 219 259 231)(font "Arial" ))
+		(line (pt 280 224)(pt 264 224)(line_width 1))
+	)
+	(drawing
+		(rectangle (rect 16 16 264 352)(line_width 1))
+	)
+)

@@ -1,0 +1,17 @@
+Analysis & Synthesis Status : Successful - Thu Jun 21 20:52:54 2018
+Quartus Prime Version : 17.1.1 Internal Build 593 12/11/2017 SJ Lite Edition
+Revision Name : smart_meter
+Top-level Entity Name : smart_meter
+Family : Cyclone V
+Logic utilization (in ALMs) : N/A
+Total registers : 4954
+Total pins : 174
+Total virtual pins : 0
+Total block memory bits : 3,072
+Total DSP Blocks : 0
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 2
+Total DLLs : 1

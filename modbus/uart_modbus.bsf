@@ -1,0 +1,78 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+*/
+(header "symbol" (version "1.2"))
+(symbol
+	(rect 16 16 240 144)
+	(text "uart_modbus" (rect 5 0 85 14)(font "Intel Clear" (font_size 8)))
+	(text "inst" (rect 8 112 26 124)(font "Intel Clear" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "CLK" (rect 0 0 24 14)(font "Intel Clear" (font_size 8)))
+		(text "CLK" (rect 21 27 45 41)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "RST" (rect 0 0 24 14)(font "Intel Clear" (font_size 8)))
+		(text "RST" (rect 21 43 45 57)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "DATA_IN" (rect 0 0 53 14)(font "Intel Clear" (font_size 8)))
+		(text "DATA_IN" (rect 21 59 74 73)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 224 32)
+		(output)
+		(text "SERIAL_DATA_OUT" (rect 0 0 116 14)(font "Intel Clear" (font_size 8)))
+		(text "SERIAL_DATA_OUT" (rect 87 27 203 41)(font "Intel Clear" (font_size 8)))
+		(line (pt 224 32)(pt 208 32))
+	)
+	(port
+		(pt 224 48)
+		(output)
+		(text "DATA_POS[7..0]" (rect 0 0 95 14)(font "Intel Clear" (font_size 8)))
+		(text "DATA_POS[7..0]" (rect 108 43 203 57)(font "Intel Clear" (font_size 8)))
+		(line (pt 224 48)(pt 208 48)(line_width 3))
+	)
+	(port
+		(pt 224 64)
+		(output)
+		(text "DATA_NEG[7..0]" (rect 0 0 95 14)(font "Intel Clear" (font_size 8)))
+		(text "DATA_NEG[7..0]" (rect 108 59 203 73)(font "Intel Clear" (font_size 8)))
+		(line (pt 224 64)(pt 208 64)(line_width 3))
+	)
+	(port
+		(pt 224 80)
+		(output)
+		(text "DATA_VALID" (rect 0 0 76 14)(font "Intel Clear" (font_size 8)))
+		(text "DATA_VALID" (rect 127 75 203 89)(font "Intel Clear" (font_size 8)))
+		(line (pt 224 80)(pt 208 80))
+	)
+	(drawing
+		(rectangle (rect 16 16 208 112))
+	)
+)

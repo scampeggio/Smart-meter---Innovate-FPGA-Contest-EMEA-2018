@@ -1,0 +1,546 @@
+
+State Machine - |smart_meter|DE10_Nano_HDMI_TX1:inst|vpg:u_vpg|pll:u_pll|pll_0002:pll_inst|altera_pll:altera_pll_i|dps_extra_kick:dps_extra_inst|dps_current_state
+Name dps_current_state.state_bit_2 dps_current_state.state_bit_1 dps_current_state.state_bit_0 
+dps_current_state.PHASE_DONE_HIGH 0 0 0 
+dps_current_state.PHASE_DONE_LOW_1 0 0 1 
+dps_current_state.PHASE_DONE_LOW_2 0 1 1 
+dps_current_state.PHASE_DONE_LOW_3 0 1 0 
+dps_current_state.PHASE_DONE_LOW_4 1 1 0 
+dps_current_state.PHASE_DONE_LOW_0 1 1 1 
+
+State Machine - |smart_meter|DE10_Nano_HDMI_TX1:inst|vpg:u_vpg|pll_reconfig:u_pll_reconfig|altera_pll_reconfig_top:pll_reconfig_inst|altera_pll_reconfig_core:NM28_reconfig.reconfig_core.altera_pll_reconfig_core_inst0|current_state
+Name current_state.state_bit_1 current_state.state_bit_0 
+current_state.IDLE 0 0 
+current_state.WAIT_ON_LOCK 1 0 
+current_state.LOCKED 1 1 
+
+State Machine - |smart_meter|DE10_Nano_HDMI_TX1:inst|vpg:u_vpg|pll_reconfig:u_pll_reconfig|altera_pll_reconfig_top:pll_reconfig_inst|altera_pll_reconfig_core:NM28_reconfig.reconfig_core.altera_pll_reconfig_core_inst0|current_read_state
+Name current_read_state.state_bit_1 current_read_state.state_bit_0 
+current_read_state.READ_IDLE 0 0 
+current_read_state.READ_WAIT 0 1 
+current_read_state.READ 1 1 
+current_read_state.READ_POST_WAIT 1 0 
+
+State Machine - |smart_meter|DE10_Nano_HDMI_TX1:inst|vpg:u_vpg|pll_reconfig:u_pll_reconfig|altera_pll_reconfig_top:pll_reconfig_inst|altera_pll_reconfig_core:NM28_reconfig.reconfig_core.altera_pll_reconfig_core_inst0|operation_address
+Name operation_address.state_bit_3 operation_address.state_bit_2 operation_address.state_bit_1 operation_address.state_bit_0 
+operation_address.000000 0 0 0 0 
+operation_address.N_REG 0 0 0 1 
+operation_address.M_REG 0 0 1 1 
+operation_address.C_COUNTERS_REG 0 0 1 0 
+operation_address.DPS_REG 0 1 1 0 
+operation_address.DSM_REG 0 1 1 1 
+operation_address.BWCTRL_REG 0 1 0 1 
+operation_address.CP_CURRENT_REG 0 1 0 0 
+operation_address.VCO_REG 1 1 0 0 
+operation_address.ANY_DPRIO 1 1 0 1 
+
+State Machine - |smart_meter|DE10_Nano_HDMI_TX1:inst|vpg:u_vpg|pll_reconfig:u_pll_reconfig|altera_pll_reconfig_top:pll_reconfig_inst|altera_pll_reconfig_core:NM28_reconfig.reconfig_core.altera_pll_reconfig_core_inst0|dprio_cur_state
+Name dprio_cur_state.state_bit_3 dprio_cur_state.state_bit_2 dprio_cur_state.state_bit_1 dprio_cur_state.state_bit_0 
+dprio_cur_state.DPRIO_IDLE 0 0 0 0 
+dprio_cur_state.ONE 0 0 1 0 
+dprio_cur_state.TWO 0 1 1 0 
+dprio_cur_state.THREE 0 1 0 0 
+dprio_cur_state.FOUR 1 1 0 0 
+dprio_cur_state.FIVE 1 1 1 0 
+dprio_cur_state.SIX 1 0 1 0 
+dprio_cur_state.SEVEN 1 0 0 0 
+dprio_cur_state.EIGHT 1 0 0 1 
+dprio_cur_state.NINE 1 0 1 1 
+dprio_cur_state.TEN 1 1 1 1 
+dprio_cur_state.DPRIO_DONE 1 1 0 1 
+
+State Machine - |smart_meter|DE10_Nano_HDMI_TX1:inst|vpg:u_vpg|pll_reconfig:u_pll_reconfig|altera_pll_reconfig_top:pll_reconfig_inst|altera_pll_reconfig_core:NM28_reconfig.reconfig_core.altera_pll_reconfig_core_inst0|dyn_phase_shift:dyn_phase_shift_inst|dps_current_state
+Name dps_current_state.state_bit_2 dps_current_state.state_bit_1 dps_current_state.state_bit_0 
+dps_current_state.DPS_DONE 0 0 0 
+dps_current_state.DPS_WAIT_PHASE_DONE 0 1 0 
+dps_current_state.DPS_START 1 1 0 
+dps_current_state.DPS_WAIT_PHASE_EN 1 0 0 
+dps_current_state.DPS_WAIT_DPRIO_WRITING 1 0 1 
+dps_current_state.DPS_CHANGED 1 1 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|soc_system_f2sdram_only_master:fpga_only_master|altera_avalon_packets_to_master:transacto|packets_to_master:p2m|state
+Name state.state_bit_3 state.state_bit_2 state.state_bit_1 state.state_bit_0 
+state.0000 0 0 0 0 
+state.GET_EXTRA 0 0 1 0 
+state.GET_SIZE1 0 1 1 0 
+state.GET_SIZE2 0 1 0 0 
+state.GET_ADDR1 1 1 0 0 
+state.GET_ADDR2 1 1 1 0 
+state.GET_ADDR3 1 0 1 0 
+state.GET_ADDR4 1 0 0 0 
+state.GET_WRITE_DATA 1 0 0 1 
+state.WRITE_WAIT 1 0 1 1 
+state.RETURN_PACKET 1 1 1 1 
+state.READ_ASSERT 1 1 0 1 
+state.READ_CMD_WAIT 0 1 0 1 
+state.READ_DATA_WAIT 0 1 1 1 
+state.READ_SEND_ISSUE 0 0 1 1 
+state.READ_SEND_WAIT 0 0 0 1 
+
+State Machine - |smart_meter|DE10_Nano_HDMI_TX1:inst|I2C_HDMI_Config:u_I2C_HDMI_Config|mSetup_ST
+Name mSetup_ST.state_bit_1 mSetup_ST.state_bit_0 
+mSetup_ST.0000 0 0 
+mSetup_ST.0001 1 0 
+mSetup_ST.0010 1 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[31].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[30].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[29].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[28].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[27].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[26].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[25].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[24].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[23].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[22].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[21].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[20].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[19].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[18].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[17].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[16].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[15].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[14].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[13].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[12].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[11].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[10].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[9].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[8].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[7].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[6].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[5].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[4].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[3].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[2].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[1].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|interrupt_latency_counter:interrupt_latency_counter_0|state_machine_counter:state_machine[0].state_machine_counter|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.START 1 0 
+state.STOP 1 1 
+state.STORE 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|soc_system_f2sdram_only_master:f2sdram_only_master|altera_avalon_packets_to_master:transacto|packets_to_master:p2m|state
+Name state.state_bit_3 state.state_bit_2 state.state_bit_1 state.state_bit_0 
+state.0000 0 0 0 0 
+state.GET_EXTRA 0 0 1 0 
+state.GET_SIZE1 0 1 1 0 
+state.GET_SIZE2 0 1 0 0 
+state.GET_ADDR1 1 1 0 0 
+state.GET_ADDR2 1 1 1 0 
+state.GET_ADDR3 1 0 1 0 
+state.GET_ADDR4 1 0 0 0 
+state.GET_WRITE_DATA 1 0 0 1 
+state.WRITE_WAIT 1 0 1 1 
+state.RETURN_PACKET 1 1 1 1 
+state.READ_ASSERT 1 1 0 1 
+state.READ_CMD_WAIT 0 1 0 1 
+state.READ_DATA_WAIT 0 1 1 1 
+state.READ_SEND_ISSUE 0 0 1 1 
+state.READ_SEND_WAIT 0 0 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|soc_system_f2sdram_only_master:hps_only_master|altera_avalon_packets_to_master:transacto|packets_to_master:p2m|state
+Name state.state_bit_3 state.state_bit_2 state.state_bit_1 state.state_bit_0 
+state.0000 0 0 0 0 
+state.GET_EXTRA 0 0 1 0 
+state.GET_SIZE1 0 1 1 0 
+state.GET_SIZE2 0 1 0 0 
+state.GET_ADDR1 1 1 0 0 
+state.GET_ADDR2 1 1 1 0 
+state.GET_ADDR3 1 0 1 0 
+state.GET_ADDR4 1 0 0 0 
+state.GET_WRITE_DATA 1 0 0 1 
+state.WRITE_WAIT 1 0 1 1 
+state.RETURN_PACKET 1 1 1 1 
+state.READ_ASSERT 1 1 0 1 
+state.READ_CMD_WAIT 0 1 0 1 
+state.READ_DATA_WAIT 0 1 1 1 
+state.READ_SEND_ISSUE 0 0 1 1 
+state.READ_SEND_WAIT 0 0 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:mm_bridge_0_s0_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.state_bit_1 state.state_bit_0 
+state.ST_IDLE 0 0 
+state.ST_COMP_TRANS 0 1 
+state.ST_UNCOMP_TRANS 1 1 
+state.ST_UNCOMP_WR_SUBBURST 1 0 
+
+State Machine - |smart_meter|ADC_ARBITER:inst4|PRES_STATE
+Name PRES_STATE.state_bit_1 PRES_STATE.state_bit_0 
+PRES_STATE.IDLE 0 0 
+PRES_STATE.MEASURE 0 1 
+PRES_STATE.WAIT_FOR 1 1 
+PRES_STATE.REG_DATA 1 0 
+
+State Machine - |smart_meter|loads:inst5|ARBITER:inst5|PRES_STATE
+Name PRES_STATE.state_bit_2 PRES_STATE.state_bit_1 PRES_STATE.state_bit_0 
+PRES_STATE.IDLE 0 0 0 
+PRES_STATE.READ_FIFO 0 0 1 
+PRES_STATE.GET_DATA 0 1 1 
+PRES_STATE.START_TX 0 1 0 
+PRES_STATE.WAIT_TX 1 1 0 
+
+State Machine - |smart_meter|loads:inst5|TX:inst4|PRES_STATE
+Name PRES_STATE.state_bit_2 PRES_STATE.state_bit_1 PRES_STATE.state_bit_0 
+PRES_STATE.IDLE 0 0 0 
+PRES_STATE.SEND_START 0 0 1 
+PRES_STATE.SEND_BIT 0 1 1 
+PRES_STATE.CHANGE_BIT 0 1 0 
+PRES_STATE.SEND_PARITY 1 1 0 
+PRES_STATE.SEND_STOP 1 1 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|soc_system_f2sdram_only_master:hps_only_master|altera_avalon_st_jtag_interface:jtag_phy_embedded_in_jtag_master|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_state
+Name read_state.state_bit_1 read_state.state_bit_0 
+read_state.ST_HEADER 0 0 
+read_state.ST_PADDED 1 0 
+read_state.ST_READ_DATA 1 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|soc_system_f2sdram_only_master:hps_only_master|altera_avalon_st_jtag_interface:jtag_phy_embedded_in_jtag_master|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_state
+Name write_state.state_bit_1 write_state.state_bit_0 
+write_state.ST_BYPASS 0 0 
+write_state.ST_HEADER_1 1 0 
+write_state.ST_HEADER_2 1 1 
+write_state.ST_WRITE_DATA 0 1 
+
+State Machine - |smart_meter|RX:inst8|PRES_STATE
+Name PRES_STATE.state_bit_3 PRES_STATE.state_bit_2 PRES_STATE.state_bit_1 PRES_STATE.state_bit_0 
+PRES_STATE.IDLE 0 0 0 0 
+PRES_STATE.WAIT_START 0 0 0 1 
+PRES_STATE.FIND_START 0 0 1 1 
+PRES_STATE.WAIT_BIT 0 0 1 0 
+PRES_STATE.GET_BIT 0 1 1 0 
+PRES_STATE.WAIT_PARITY 0 1 1 1 
+PRES_STATE.GET_PARITY 0 1 0 1 
+PRES_STATE.WAIT_STOP 0 1 0 0 
+PRES_STATE.GET_STOP 1 1 0 0 
+
+State Machine - |smart_meter|SIRC:inst7|PRES_STATE
+Name PRES_STATE.state_bit_3 PRES_STATE.state_bit_2 PRES_STATE.state_bit_1 PRES_STATE.state_bit_0 
+PRES_STATE.IDLE 0 0 0 0 
+PRES_STATE.START1 0 0 0 1 
+PRES_STATE.START2 0 0 1 1 
+PRES_STATE.GET0 0 0 1 0 
+PRES_STATE.GET1 0 1 1 0 
+PRES_STATE.FOUND_BIT 0 1 1 1 
+PRES_STATE.WAIT_BIT 0 1 0 1 
+PRES_STATE.END_BIT 0 1 0 0 
+PRES_STATE.CLEAR_COUNT 1 1 0 0 
+PRES_STATE.REG 1 1 0 1 
+
+State Machine - |smart_meter|ARBITER2:inst2|PRES_STATE1
+Name PRES_STATE1.state_bit_1 PRES_STATE1.state_bit_0 
+PRES_STATE1.IDLE1 0 0 
+PRES_STATE1.GET_DATA1 0 1 
+PRES_STATE1.SEND_FORCE1 1 1 
+PRES_STATE1.WAIT_NX1 1 0 
+
+State Machine - |smart_meter|ARBITER2:inst2|PRES_STATE2
+Name PRES_STATE2.state_bit_1 PRES_STATE2.state_bit_0 
+PRES_STATE2.IDLE2 0 0 
+PRES_STATE2.GET_DATA2 0 1 
+PRES_STATE2.SEND_FORCE2 1 1 
+PRES_STATE2.WAIT_NX2 1 0 
+
+State Machine - |smart_meter|loads:inst5|LOADS1:inst1|PRES_STATE
+Name PRES_STATE.state_bit_2 PRES_STATE.state_bit_1 PRES_STATE.state_bit_0 
+PRES_STATE.IDLE 0 0 0 
+PRES_STATE.SEND_UPDATE 0 0 1 
+PRES_STATE.SINK 0 1 1 
+PRES_STATE.SOURCE 0 1 0 
+PRES_STATE.SEND_FORCE 1 1 0 
+
+State Machine - |smart_meter|pumps:inst6|ARBITER_PUMPS:inst|PRES_STATE
+Name PRES_STATE.state_bit_2 PRES_STATE.state_bit_1 PRES_STATE.state_bit_0 
+PRES_STATE.IDLE 0 0 0 
+PRES_STATE.CHECK_PW 0 0 1 
+PRES_STATE.CHECK_BAT1 0 1 1 
+PRES_STATE.CHARGE 0 1 0 
+PRES_STATE.MSG1 1 1 0 
+PRES_STATE.CHECK_BAT2 1 1 1 
+PRES_STATE.DISCHARGE 1 0 1 
+PRES_STATE.MSG2 1 0 0 
+
+State Machine - |smart_meter|uart_modbus:inst14|RX:inst1|PRES_STATE
+Name PRES_STATE.state_bit_3 PRES_STATE.state_bit_2 PRES_STATE.state_bit_1 PRES_STATE.state_bit_0 
+PRES_STATE.IDLE 0 0 0 0 
+PRES_STATE.WAIT_START 0 0 0 1 
+PRES_STATE.FIND_START 0 0 1 1 
+PRES_STATE.WAIT_BIT 0 0 1 0 
+PRES_STATE.GET_BIT 0 1 1 0 
+PRES_STATE.WAIT_PARITY 0 1 1 1 
+PRES_STATE.GET_PARITY 0 1 0 1 
+PRES_STATE.WAIT_STOP 0 1 0 0 
+PRES_STATE.GET_STOP 1 1 0 0 
+
+State Machine - |smart_meter|uart_modbus:inst14|MODBUS:inst5|PRES_STATE
+Name PRES_STATE.state_bit_3 PRES_STATE.state_bit_2 PRES_STATE.state_bit_1 PRES_STATE.state_bit_0 
+PRES_STATE.IDLE 0 0 0 0 
+PRES_STATE.SEND_BYTE1 0 0 0 1 
+PRES_STATE.SEND_BYTE2 0 0 1 1 
+PRES_STATE.CNT_INC1 0 0 1 0 
+PRES_STATE.CNT_INC2 0 1 1 0 
+PRES_STATE.WAIT_RX1 0 1 1 1 
+PRES_STATE.SAMPLE_RX 0 1 0 1 
+PRES_STATE.CLEAR_CNT 0 1 0 0 
+PRES_STATE.ATTESA 1 1 0 0 
+PRES_STATE.DELAY 1 1 0 1 
+
+State Machine - |smart_meter|uart_modbus:inst14|MODBUS:inst5|PRES_STATE1
+Name PRES_STATE1.state_bit_2 PRES_STATE1.state_bit_1 PRES_STATE1.state_bit_0 
+PRES_STATE1.IDLE1 0 0 0 
+PRES_STATE1.R1 0 0 1 
+PRES_STATE1.R2 0 1 1 
+PRES_STATE1.R3 0 1 0 
+PRES_STATE1.WAIT_NOR 1 1 0 
+
+State Machine - |smart_meter|uart_modbus:inst14|TX:inst|PRES_STATE
+Name PRES_STATE.state_bit_2 PRES_STATE.state_bit_1 PRES_STATE.state_bit_0 
+PRES_STATE.IDLE 0 0 0 
+PRES_STATE.SEND_START 0 0 1 
+PRES_STATE.SEND_BIT 0 1 1 
+PRES_STATE.CHANGE_BIT 0 1 0 
+PRES_STATE.SEND_PARITY 1 1 0 
+PRES_STATE.SEND_STOP 1 1 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|altera_edge_detector:pulse_debug_reset|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.ARM 1 0 
+state.CAPT 1 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|altera_edge_detector:pulse_warm_reset|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.ARM 1 0 
+state.CAPT 1 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|altera_edge_detector:pulse_cold_reset|state
+Name state.state_bit_1 state.state_bit_0 
+state.IDLE 0 0 
+state.ARM 1 0 
+state.CAPT 1 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|soc_system_f2sdram_only_master:fpga_only_master|altera_avalon_st_jtag_interface:jtag_phy_embedded_in_jtag_master|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_state
+Name read_state.state_bit_1 read_state.state_bit_0 
+read_state.ST_HEADER 0 0 
+read_state.ST_PADDED 1 0 
+read_state.ST_READ_DATA 1 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|soc_system_f2sdram_only_master:fpga_only_master|altera_avalon_st_jtag_interface:jtag_phy_embedded_in_jtag_master|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_state
+Name write_state.state_bit_1 write_state.state_bit_0 
+write_state.ST_BYPASS 0 0 
+write_state.ST_HEADER_1 1 0 
+write_state.ST_HEADER_2 1 1 
+write_state.ST_WRITE_DATA 0 1 
+
+State Machine - |smart_meter|DE10_Nano_HDMI_TX1:inst|vpg:u_vpg|pll_controller:u_pll_controller|state
+Name state.state_bit_3 state.state_bit_2 state.state_bit_1 state.state_bit_0 
+state.0000 0 0 0 0 
+state.0001 0 0 1 0 
+state.0010 0 1 1 0 
+state.0011 0 1 0 0 
+state.0100 1 1 0 0 
+state.0101 1 1 1 0 
+state.0110 1 0 1 0 
+state.0111 1 0 0 0 
+state.1000 1 0 0 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|soc_system_f2sdram_only_master:f2sdram_only_master|altera_avalon_st_jtag_interface:jtag_phy_embedded_in_jtag_master|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_state
+Name read_state.state_bit_1 read_state.state_bit_0 
+read_state.ST_HEADER 0 0 
+read_state.ST_PADDED 1 0 
+read_state.ST_READ_DATA 1 1 
+
+State Machine - |smart_meter|DE10_NANO_SoC_GHRD:inst3|soc_system:u0|soc_system_f2sdram_only_master:f2sdram_only_master|altera_avalon_st_jtag_interface:jtag_phy_embedded_in_jtag_master|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_state
+Name write_state.state_bit_1 write_state.state_bit_0 
+write_state.ST_BYPASS 0 0 
+write_state.ST_HEADER_1 1 0 
+write_state.ST_HEADER_2 1 1 
+write_state.ST_WRITE_DATA 0 1 
